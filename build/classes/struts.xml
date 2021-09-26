@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+   <constant name="struts.devMode" value="true" />
+   <constant name="struts.enable.SlashesInActionNames" value="true" />
+   <constant name="struts.action.extension" value="" />
+
+   <package name="meuPacote" extends="json-default">
+      <!-- lista de alunos -->
+      <action name="alunos"  class="com.jadson.servicosstruts2.action.ListaAlunosAction">
+         <result name="xml" type="xslt">
+            <param name="location">
+               /xsl/transformadorListaAlunos.xslt
+            </param>
+         </result>
+         <result name="json" type="json">
+            <param name="root">alunos</param>
+         </result>
+      </action>
+
+      <!-- aluno / id  -->
+      <action name="alunos/*"  class="com.jadson.servicosstruts2.action.AlunoAction">
+         <result name="xml" type="xslt">
+            <param name="location">
+               /xsl/transformadorAluno.xslt
+            </param>
+         </result>
+         <result name="json" type="json">
+            <param name="root">aluno</param>
+         </result>
+      </action>
+   </package>
+</struts>
